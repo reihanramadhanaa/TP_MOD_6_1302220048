@@ -8,6 +8,16 @@
 
         public SayaTubeVideo(string title)
         {
+            if (title != null && title.Length < 100)
+            {
+                this.title = title;
+            }
+            else
+            {
+                throw new ArgumentException("TITLE TIDAK BOLEH KOSONG DAN PANJANG KURANG DARI 100 KATA");
+            }
+           
+
             this.title = title;
             id = generateRandomid();
             this.playCount = 0;
@@ -21,7 +31,25 @@
         }
         public void IncreasePlayCount (int newPlayCount)
         {
-            playCount += newPlayCount;
+            try
+            {
+                checked
+                {
+                    if (newPlayCount >= 0 && newPlayCount <= 10000000)
+                    {
+                        playCount += newPlayCount;
+                    }
+                    else
+                    {
+                        throw new ArgumentOutOfRangeException();
+                    }
+                }
+            }
+            catch (Exception ArgumentOutOfRangeException)
+            {
+                Console.WriteLine(ArgumentOutOfRangeException.Message);
+            }
+
 
         }
         public void PrintVideoDetails()
@@ -29,8 +57,8 @@
             Console.WriteLine("Video ID: " + id);
             Console.WriteLine("Title: " + title);
             Console.WriteLine("Play Count: " + playCount);
-
-
         }
+
+
     }
 }
