@@ -8,6 +8,7 @@
 
         public SayaTubeVideo(string title)
         {
+
             if (title != null && title.Length < 100)
             {
                 this.title = title;
@@ -31,6 +32,7 @@
         }
         public void IncreasePlayCount (int newPlayCount)
         {
+
             try
             {
                 checked
@@ -50,6 +52,7 @@
                 Console.WriteLine(ArgumentOutOfRangeException.Message);
             }
 
+            playCount += newPlayCount;
 
         }
         public void PrintVideoDetails()
